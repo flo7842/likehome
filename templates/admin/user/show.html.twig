@@ -1,0 +1,51 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des réservations !{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5">Gestion des réservations</h1>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>FullName</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in pagination.getData %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td><img src="{{ user.picture }}" class="avatar avatar-micro" alt="Avatar de {{ user.fullName }}">
+                        {{ user.fullName }}</td>
+                   
+                        
+                    <td>{{ user.email }}</td>
+                    <td>{% for role in user.roles %}
+                        {{ role | slice(5, 5) }}
+                    {% endfor %}</td>
+                    
+                    <td>
+                        <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-primary">
+                            <i class="fas fa-pen"></i>
+                        </a> 
+                        <a href="" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ pagination.display() }}
+    </div>
+
+
+{% endblock %}

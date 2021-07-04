@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <div class="container">
-        <h1>Inscrivez-vous sur notre site !</h1>
+    <div class="container cont-register">
+        <h1>Inscrivez-vous !</h1>
 
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        <button type="submit" class="btn btn-success">Confirmez l'inscription</button>
+        <button type="submit" class="btn btn-success mt-2">Confirmez l'inscription</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

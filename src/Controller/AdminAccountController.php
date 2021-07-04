@@ -3,18 +3,29 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminAccountController extends AbstractController
 {
     /**
-     * @Route("/admin/account", name="admin_account")
+     * @Route("/admin/login", name="admin_account_login")
      */
-    public function index(): Response
+    public function index()
     {
-        return $this->render('admin_account/index.html.twig', [
-            'controller_name' => 'AdminAccountController',
+
+        return $this->render('admin/account/login.html.twig', [
+
         ]);
+    }
+
+    /**
+     * Permet de se déconnecter
+     *
+     * @Route("/admin/logout", name="admin_account_logout")
+     *
+     * @return void
+     */
+    public function logout(){
+
     }
 }

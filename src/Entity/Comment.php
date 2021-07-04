@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
@@ -20,7 +21,7 @@ class Comment
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private $created_at;
 
     /**
      * @ORM\Column(type="integer")
@@ -28,7 +29,7 @@ class Comment
     private $rating;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $content;
 
@@ -42,6 +43,19 @@ class Comment
      */
     private $author;
 
+    /**
+     * Permet de mettre en place la date de crétion
+     *
+     * @ORM\PrePersist()
+     *
+     * @return void
+     */
+    public function prePersist(){
+        if(empty($this->created_at)){
+            $this->created_at = new \DateTime();
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,12 +63,12 @@ class Comment
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $createdAt;
 
         return $this;
     }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Bienvenue sur le meilleur réseau d'appartements
+    Bienvenue sur le meilleur réseau d'appartements en location
 {% endblock %}
 
 {% block header %}
@@ -11,78 +11,43 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron mt-3">
-            <h1 class="display-3">Hello, world!</h1>
-            <p class="lead">Nous mettons en relation les voyageurs et les propriétaires qui veulent profiter d'oppurtunité et gagner de l'argent en proposant leur bien à la location</p>
+            <h1 class="display-3">Bienvenue sur LikeHome</h1>
+            <p class="lead">Proposez votre bien à la location et mettez-vous en relation avec les voyageurs</p>
             <hr class="my-4">
-            <p>Vous êtes voyageur ? Et vous voulez voir où vous pourrez loger lors de votre prochain déplacement ?</p>
+            <p>Vous souhaitez vous déplacer pour un wee-kend ou pour des raisons professionnels ?</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Voir nos annonces</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('ads_index') }}" role="button">Voir nos annonces</a>
             </p>
         </div>
 
-        <h2 class="h1 my-5">Nos appartements stars</h2>
+        <h2 class="h1 my-5">Nos appartements les plus loués</h2>
 
         <div class="row">
+        {% for ad in bestAds %}
             <div class="col-md-4">
+            
                 <div class="card bg-light mb-3">
+                
+                    
+                
                     <div class="card-header text-center">
-                        3 chambres, <strong>49&euro; / nuit</strong><br>
-                        <small>Pas encore noté</small>
+                    
+                        3 chambres, <strong>{{ ad.price | number_format(2, ',', ' ')}}&euro; / nuit</strong><br>
                     </div>
-                    <img src="http://placehold.it/1000x400" alt="Image de l'appartement"
+                    <img src="{{ad.cover_image}}" alt="Image de l'appartement"
                          style="height: 200px; width: 100%; display: block">
                     <div class="card-body">
                         <h4 class="card-title">
-                            Appartement de ouf !
+                            {{ad.title}}
                         </h4>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur
-                            debitis dolorem fuga id incidunt itaque nemo quo voluptas, voluptate.
+                            {{ad.introduction  | raw}}
                         </p>
-                        <a href="#" class="btn btn-secondary">En savoir plus</a>
+                        <a href="ads/{{ad.slug}}" class="btn btn-secondary">En savoir plus</a>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-light mb-3">
-                    <div class="card-header text-center">
-                        3 chambres, <strong>49&euro; / nuit</strong><br>
-                        <small>Pas encore noté</small>
-                    </div>
-                    <img src="http://placehold.it/1000x400" alt="Image de l'appartement"
-                         style="height: 200px; width: 100%; display: block">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            Appartement de ouf !
-                        </h4>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur
-                            debitis dolorem fuga id incidunt itaque nemo quo voluptas, voluptate.
-                        </p>
-                        <a href="#" class="btn btn-secondary">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-light mb-3">
-                    <div class="card-header text-center">
-                        3 chambres, <strong>49&euro; / nuit</strong><br>
-                        <small>Pas encore noté</small>
-                    </div>
-                    <img src="http://placehold.it/1000x400" alt="Image de l'appartement"
-                         style="height: 200px; width: 100%; display: block">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            Appartement de ouf !
-                        </h4>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur
-                            debitis dolorem fuga id incidunt itaque nemo quo voluptas, voluptate.
-                        </p>
-                        <a href="#" class="btn btn-secondary">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
+                </div >
+            </div> 
+        {% endfor %}
         </div>
 
         <h2 class="h1 my-5">Nos propriétaires stars !</h2>

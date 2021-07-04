@@ -19,6 +19,42 @@ class AdRepository extends ServiceEntityRepository
         parent::__construct($registry, Ad::class);
     }
 
+    /**
+     * @return
+     */
+    public function findMoreReservation()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT count(*),   
+            `ad`.`title`,
+            `ad`.`slug`,
+            `ad`.`price`,
+            `ad`.`introduction`,
+            `ad`.`content`,
+            `ad`.`cover_image`,
+            `ad`.`rooms`,
+            `booking`.`comment`,
+            `comment`.`rating`
+        FROM
+            `ad`
+            INNER JOIN `booking` ON `booking`.`ad_id` = `ad`.`id`
+            INNER JOIN `comment` ON `comment`.`ad_id` = `ad`.`id`
+        GROUP BY
+            `ad`.`title`
+        HAVING
+            COUNT(*) > 3
+        LIMIT 3
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
     // /**
     //  * @return Ad[] Returns an array of Ad objects
     //  */

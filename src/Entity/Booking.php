@@ -2,43 +2,53 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ORM\Entity(repositoryClass=BookingRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $booker;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Ad::class, inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ad", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $ad;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Type("\DateTimeInterface")
+     * @Assert\GreaterThan("today", message="La date d'arrivée doit être
+     supérieur à la date d'aujourd'hui !", groups={"front"})
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Type("\DateTimeInterface")
+     * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ doit être plus
+     * éloignée que la date d'arrivée !")
      */
     private $endDate;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
@@ -48,9 +58,73 @@ class Booking
     private $amount;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
+
+    /**
+     * Callback appelé à chaque fois qu'on crée une réservation
+     *
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function prePersist(){
+        if(empty($this->createdAt)){
+            $this->createdAt = new \DateTime();
+        }
+
+        if(empty($this->amount)){
+            // prix de l'annonce * nombre de jour
+            $this->amount = $this->ad->getPrice() * $this->getDuration();
+        }
+    }
+
+    public function isBookableDates(){
+        // Les dates qui sont impossibles pour l'annonce
+        $notAvailableDays = $this->ad->getNotAvailableDays();
+
+        // Comparer les dates choisies avec les dates imposssibles
+        $bookingDays = $this->getDays();
+
+        $formatDay = function ($day){
+            return $day->format('Y-m-d');
+        };
+
+        // Tableau des chaînes de caractères de mes journées
+        $days = array_map($formatDay, $bookingDays);
+
+        $notAvailable = array_map($formatDay, $notAvailableDays);
+
+        foreach ($days as $day){
+            if(array_search($day, $notAvailable) !== false) return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Permet de récupérer un tableau des journées qui correspondent à ma réservation
+     *
+     * @return array Un tableau d'objet DateTime représentant les jours de la réservation
+     */
+    public function getDays(){
+        $resultat = range(
+            $this->startDate->getTimestamp(),
+            $this->endDate->getTimestamp(),
+            24 * 60 * 60
+        );
+
+        $days = array_map(function ($dayTimestamp){
+            return new \DateTime(date('Y-m-d', $dayTimestamp));
+        }, $resultat);
+
+        return $days;
+    }
+
+    public function getDuration(){
+        $diff = $this->endDate->diff($this->startDate);
+        return $diff->days;
+    }
 
     public function getId(): ?int
     {
@@ -105,12 +179,12 @@ class Booking
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -134,7 +208,7 @@ class Booking
         return $this->comment;
     }
 
-    public function setComment(string $comment): self
+    public function setComment(?string $comment): self
     {
         $this->comment = $comment;
 

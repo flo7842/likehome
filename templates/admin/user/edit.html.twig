@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification de l'utilisateur n° {{ user.id }}{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">Modification du useraire n° {{ user.id }}</h1>
+
+
+        <div class="alert alert-info">
+            {# <strong>Annonce liée : </strong> {{ user.ad.title }}<br>
+            <strong>Auteur : </strong>{{ user.author.fullName }}<br>
+            <strong>Date de création : </strong>{{ user.createdAt | date('d/m/Y H:i') }}<br>
+            <strong>Note donnée : </strong>{{ user.rating }} #}
+        </div>
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check"></i>
+                Enregistrer les modifications
+
+            </button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+
+
+
+
+{% block javascripts %}
+
+{% endblock %}

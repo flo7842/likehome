@@ -2,6 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Ad;
+use App\Entity\Booking;
+use App\Entity\Comment;
+use App\Entity\Image;
 use App\Entity\Role;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -30,8 +34,8 @@ class AppFixtures extends Fixture
         $adminUser->setFirstName('Florian')
                   ->setLastName('Bracq')
                   ->setEmail('florianbracq42@gmail.com')
-                  ->setHash($this->encoder->encodePassword($encoder, 'password'))
-                  ->setPicture('http://avatars.io/twitter/bracqflorian')
+                  ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+                  ->setPicture('https://pbs.twimg.com/profile_images/1102967485974937600/LgSE31RT_400x400.png')
                   ->setIntroduction($faker->sentence())
                   ->setDescription('<p>' .join('</p><p>', $faker->paragraphs(3)) . '</p>')
                   ->addUserRole($adminRole);
