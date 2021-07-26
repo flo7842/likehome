@@ -47,7 +47,7 @@ class AdRepository extends ServiceEntityRepository
             `ad`.`title`
         HAVING
             COUNT(*) > 3
-        LIMIT 3
+        LIMIT 6
         ';
         $stmt = $conn->prepare($sql);
         $stmt->execute();

@@ -1,4 +1,4 @@
-div.container{
+/* div.container{
     margin-top: 20px;
 }
 
@@ -77,7 +77,7 @@ span.rating i {
 
 /** register **/
 
-.cont-register{
+/** .cont-register{
     max-width: 650px;
 }
 
@@ -86,7 +86,7 @@ span.rating i {
 
 
 /** Ads **/
-p.txt-left{
+/**p.txt-left{
     text-align: left;
 }
 
@@ -94,10 +94,1011 @@ p.txt-left{
 
 /** Admin Dashboard **/
 
-.item{
+/**.item{
     width: 300px;
     height: 250px;
 }
 .annonces{
+
+} */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+h1{
+    font-size: 1.5rem;
+    text-align: center;
+    color: #535a62;
+}
+
+hr{
+    width: 85%;
+    margin: auto;
+}
+
+.alert-danger{
+    color: crimson;
+    background: white;
+    margin: auto;
+    font-size: 0.8rem;
+    width: 90%;
+    padding: 9px 32px;
+}
+
+.avatar-mini{
+    width: 70px;
+    border-radius: 50%;
+}
+
+.user-profil-menu{
+    display: flex;
+    align-items: baseline;
+}
+
+.user-profil-menu p{
+    color: white;
+    font-size: 1.5rem;
+}
+
+.open-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    line-height: 100px;
+    background: aliceblue;
+    text-align: end;
+    font-size: 3em;
+    font-family: 'Lato';
+}
+
+.open-nav i {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.open-nav a {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #535A62;
+}
+
+.overlay {
+  
+    height: 100%;
+    width: 0;
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+
+    background-color: rgba(0,0,0,1); 
+    overflow-x: hidden; 
+    transition: 0.5s; 
+}
+
+.overlay-content {
+    position: relative;
+    left: 6rem;
+    top: 10%; 
+    width: 100%;
+    text-align: center; 
+
+}
+
+
+.overlay a {
+    text-align: left;
+    padding: 14px 8px;
+    text-decoration: none;
+    font-size: 24px;
+    margin-top: 1rem;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+
+.overlay .closebtn {
+    position: absolute;
+    top: -26px;
+    right: 45px;
+    font-size: 40px;
+}
+
+.cont-log-1{
+    height: 100vh;
+}
+
+.login-cont{
+    height: 100%!important;
+}
+
+.card-home .card-body>div{
+    margin: 1rem 0;
+    color: aquamarine;
+}
+
+.card-home .card-body h4{
+    margin-top: 1rem;
+    color: #D4DCFF;
+}
+
+.become-host{
+    display: none;
+}
+
+.alert-success{
+    background: #43AC6A;
+    text-align: center;
+}
+.alert-success h4{
+    padding-top: 0.8rem;
+    color: white;
+}
+.alert-success p{
+    padding-bottom: 0.8rem;
+    color: white;
+}
+.title-auth{
+    margin-top: 6rem;
+}
+
+.form-auth{
+    margin: auto;
+    width: 70%;
+}
+
+.form-group{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+}
+
+.form-group input{
+    margin-top: 0.4rem;
+    border: none;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+.btn-register button{
+    background: #c97c5d;
+    color: #ffffff;
+}
+
+.cont-register .container-child form{
+    margin: auto;
+    width: 90%;
+}
+
+.cont-register h1{
+    margin-top: 6rem;
+}
+
+.cont-register .container-child{
+    height: auto;
+}
+
+
+
+.form-group label{
+    color: white;
+    margin-top: 1rem;
+}
+
+.form-group button{
+    margin-top: 1rem;
+    background: #c97c5d30;
+    color: white;
+    width: 50%;
+    border: none;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+}
+
+.fa-image{
+    font-size: 3rem;
+}
+
+.img-group p{
+    color: white;
+}
+
+.img-group .form-group{
+    margin-left: 0;
+}
+
+.btn-ad{
+    background: #c97c5d;
+    color: white;
+    margin: auto;
+    display: block;
+    margin-top: 2rem;
+    width: 90%;
+    border: none;
+    padding: 1rem 0;
+}
+
+.btn-register button{
+    display: block;
+    margin: auto;
+    outline: none;
+    padding: 0.5rem 0;
+    width: 90%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.button-group{
+    align-items: center;
+}
+.btn-book{
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-book-ad{
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.8rem;
+    background: #c97c5d;
+    padding: 0.4rem 0;
+    margin-top: 2rem;
+}
+
+
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-child{
+    background: #434e5a;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    padding-left: 0;
+    padding-bottom: 2rem;
+    z-index: -1;
+}
+h2{
+    color: #434e5a;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 4rem;
+    position: relative;
+    margin-bottom: 50px;
+    display: block;
+}
+.title-section::before{
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 1px;
+    border-top: 2px solid #ccc;
+    content: "";
+}
+
+.title-section>span{
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+    background: #fff;
+    display: inline-block;
+    color: #434e5a;
+}
+.header-home{
+    width: 90%;
+    margin: auto;
+}
+.header-home h1{
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    font-style: italic;
+    text-align: center;
+    color: #535a62;
+}
+.header-home img{
+    width: 100%;
+}
+
+.row-ads{
+    margin-top: 4rem;
+    padding-top: 3rem;
+}
+
+.row-ads .title-section{
+    margin-bottom: 2rem;
+}
+
+.col-md-4{
+    padding: 2rem;
+}
+.card{
+    margin: 1rem 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.card:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.card-content{
+    display: flex;
+}
+.card .card-content img{
+    width: 50%;
+    display: inline-block;
+    border-radius: 10px;
+    height: 150px;
+}
+.card-body{
+    margin-left: 1rem;
+    width: 45%;
+    display: inline-block;
+
+}
+.card-text{
+    color: white;
+}
+
+.cont-ad{
+    background-color: #434e5a;
+}
+
+.ad-title .info{
+    margin-bottom: 1rem;
+}
+
+.ad-title .container img{
+    width: 100%;
+}
+
+.global-rate{
+    margin-top: 2rem;
+}
+
+.ad-content{
+    margin: auto;
+    margin-top: 1rem;
+    width: 80%;
+}
+
+.ad-content h2{
+    color: white;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ad-content p{
+    color: white;
+    font-size: 1.2rem;
+}
+.col{
+    color: #c97c5d;
+    width: 100%;
+    margin: auto;
+}
+.col-rating small{
+    color: lightgray;
+}
+.cont-comment{
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
+}
+.cont-comment blockquote{
+    color: lightgray;
+    font-size: 0.8rem;
+    margin-bottom: -0.4rem;
+}
+.cont-comment strong{
+    text-decoration: underline;
+    font-size: 1rem;
+    color: #ffff;
+    font-weight: 700;
+}
+
+.cont-comment .rate{
+    color: #ffffff;
+    text-decoration: none;
+}
+.container-2{
+    display: none;
+}
+.rating-row{
+    color: aqua;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.rating{
+    margin-left: 0.2rem;
+    margin-right: 1rem;
+}
+.rating .fa-star{
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #f6be23;
+}
+.book-username{
+    margin-top: 2rem;
+    font-size: 0.7rem;
+}
+.title-book{
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #535A62;
+}
+.cont-book form{
+    width: 90%;
+    margin: auto;
+}
+.cont-book form h2{
+    margin-top: 3rem;
+    margin-bottom: 0.3rem;
+    padding-top: 3rem;
+    font-size: 1rem;
+    text-align: left;
+    color: white;
+}
+.cont-book form span{
+    color: rgb(83 90 98);
+}
+.row-form{
+    display: flex;
+    flex-direction: column;
+}
+.row-form .col > div{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+.row-form .col > div label{
+    color: white;
+}
+.row-form .col > div input{
+    margin-top: 0.6rem;
+    padding: 0.4rem 0 0.4rem 0;
+}
+.review{
+    font-size: 0.8rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.comment{
+    margin: auto;
+}
+
+.amount-days{
+    padding: 1rem 0;
+}
+
+#days{
+    color: aquamarine;
+}
+
+#amount{
+    color: #C97C5D;
+}
+
+textarea{
+    width: 100%;
+    height: 80px;
+}
+
+.datepicker{
+    position: absolute;
+}
+
+.cont-book button{
+    border: none;
+    background: #C97C5D;
+    margin-top: 1.5rem;
+    padding: 0.6rem;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+/** DatePicker **/
+.table-condensed{
+    background: ghostwhite;
+}
+.ui-datepicker {
+    width: 300px;
+    height: 300px;
+    margin: 5px auto 0;
+    font: 12pt Arial, sans-serif;
+    /*-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);*/
+}
+
+    .ui-datepicker table {
+        width: 100%;
+    }
+
+.ui-datepicker-header {
+    background: #3399ff;
+    color: #ffffff;
+    font-family:'Times New Roman';
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #111;
+}
+
+.ui-datepicker-title {
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.ui-datepicker-prev {
+    float: left;
+    cursor: pointer;
+    background-position: center -30px;
+}
+
+.ui-datepicker-next {
+    float: right;
+    cursor: pointer;
+    background-position: center 0px;
+}
+
+.ui-datepicker thead {
+    background-color: #f7f7f7;
+
+    /*border-bottom: 1px solid #bbb;*/
+}
+
+.ui-datepicker th {
+    background-color:#808080;
+    text-transform: uppercase;
+    font-size: 8pt;
+    color: #666666;
+    /*text-shadow: 1px 0px 0px #fff;*/
+    /*filter: dropshadow(color=#fff, offx=1, offy=0);*/
+}
+
+.ui-datepicker tbody td {
+    padding: 0;
+    /*border-right: 1px solid #808080;*/
+}
+
+    .ui-datepicker tbody td:last-child {
+        border-right: 0px;
+    }
+
+.ui-datepicker tbody tr {
+    border-bottom: 1px solid #bbb;
+}
+
+    .ui-datepicker tbody tr:last-child {
+        border-bottom: 0px;
+    }
+
+.ui-datepicker a {
+    text-decoration: none;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: inline-block;
+    /*font-weight: bold;*/
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    /*text-shadow: 1px 1px 0px #fff;*/
+    /*filter: dropshadow(color=#fff, offx=1, offy=1);*/
+}
+
+.ui-datepicker-calendar .ui-state-default {
+      background: linear-gradient(#999999, #737373);
+      color:#ffffff;
+      height:40px;
+      width:40px;
+
+}
+
+.ui-datepicker-calendar .ui-state-hover {
+    background: #33adff;
+    color: #FFFFFF;
+}
+
+.ui-datepicker-calendar .ui-state-active {
+    background: #33adff;
+    -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    color: #e0e0e0;
+    text-shadow: 0px 1px 0px #4d7a85;
+    border: 1px solid #55838f;
+    position: relative;
+    margin: -1px;
+}
+
+.ui-datepicker-unselectable .ui-state-default {
+    background: #D6E4BE;
+    color: #000;
+}
+
+/** table booking **/
+
+.details > div{
+    padding-top: 3rem;
+}
+
+.details h2{
+    text-align: left;
+}
+table{
+    margin: auto;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table tr {
+    color: #ffffff;
+    border-bottom: 1px solid #c97c5d;
+    text-align: left;
+}
+
+.td-title{
+    color: #c97c5d;
+}
+
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.libelle{
+    font-weight: bold;
+}
+
+table tr td{
+    width: 30%;
+}
+
+.host{
+    width: 80%;
+    margin-left: 2rem;
+}
+
+.host h2, .host p{
+    color: white;
+}
+
+.avatar{
+    border-radius: 50%;
+}
+
+.host a{
+    color: aquamarine;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.accommodation{
+    margin-left: 2rem;
+}
+
+.accommodation h2{
+    margin-left: 2rem;
+    color: aquamarine;
+}
+
+.accommodation h4{
+    margin-bottom: 1rem;
+}
+
+#comment blockquote{
+    color: white;
+}
+
+.col h4 a{
+    margin: 1rem 0;
+    color: white;
+}
+
+.col p{
+    color: white;
+}
+
+/** My Booking page **/
+
+.img-fluid{
+    width: 100%;
+}
+
+.cont-my-booking{
+    margin: auto;
+}
+
+.cont-my-booking .mt-5{
+    margin: auto;
+    width: 90%;
+    padding: 1rem 0;
+}
+
+.book-rating{
+    text-align: center;
+    margin-top: 1rem;
+    color: white;
+}
+
+.book-rating a{
+    color: aquamarine;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.book-info{
+    width: 60%;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.book-info h4{
+    color: white;
+}
+
+.book-info p{
+    margin: 1rem 0;
+    color: #C97C5D;
+}
+
+.book-info a{
+    color: aquamarine;
+}
+
+.info{
+    padding-top: 3rem;
+    width: 90%;
+    margin: auto;
+}
+
+/** Ad **/
+
+.card-ad{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-ad:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.header-ad{
+    width: 50%;
+}
+
+.body-ad{
+    width: 50%;
+    font-size: 0.6rem;
+    padding: 0;
+    margin: 0;
+}
+
+.body-ad .card-title{
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.body-ad h5{
+    color: aquamarine;
+}
+
+.body-ad .rating{
+    margin-left: 0.2rem;
+}
+
+.body-ad .rating i{
+    font-size: 0.5rem;
+}
+
+.body-ad a{
+    color: white;
+    font-size: 0.6rem;
+}
+
+.img-ad{
+    height: 100px;
+    width: 100%;
+    margin-bottom: -5px;
+    display: inline-block;
+}
+
+.body-ad p{
+    color: white;
+}
+
+.show-more{
+    padding-top: 0.5rem;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    color: #c97c5d!important;
+    display: block;
+    text-decoration: none;
+}
+
+/** Profil page **/
+
+.col-info-user{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.col-info-user img{
+    margin-top: 2rem;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.col-username h1{
+    color: aquamarine;
+}
+
+.profil-user p{
+    color: white;
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.profil-user hr{
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.user-ad-title{
+    color: white;
+}
+
+.row-user-ad{
+    margin: 0.3rem 0;
+}
+
+.row-user-ad .card-body>div{
+    margin-bottom: 0;
+}
+
+.row-user-ad .card-body p{
+    margin: 0;
+}
+
+@media only screen and (min-width: 450px){
+
+    .container-child {
+        top: 266px;
+    }
+}
+@media only screen and (min-width: 650px){
+
+    .container-child {
+        top: 622px;
+    }
+
+    .row-ads{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 2rem;
+    }
+
+    .card-home-cont{
+        width: 48%;
+    }
+
+    .col-md-4{
+        width: 50%;
+        padding: 1rem;
+    }
+
+    .cont-ad-show .row{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+
+    /** Admin **/
+
+    /** Admin login **/
+
+    .card-admin h4{
+        padding-top: 1rem;
+        text-align: center;
+    }
+
+    .form-group{
+        align-items: left;
+    }
+
+   
+
+    .form-group a{
+        color: black;
+        margin-top: 1rem;
+    }
+
+    .become-host{
+        display: block;
+        background-image: url('../image/man-hote.jpg');
+        background-position: center;
+        background-size: cover;
+        height: 250px;
+        width: 95%;
+        border-radius: 10px;
+        margin: auto;
+    }
+    
+    .become-host > div{
+        margin-top: 1rem;
+        margin-left: 2rem;
+    }
+    
+    .become-host div h2{
+        color: #ffffff;
+        text-align: left;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        padding-top: 3rem;
+    }
+    
+    .become-host div p{
+        color: white;
+        font-size: 1.2rem;
+    }
+    
+    .become-host div> a{
+        display: block;
+        background: #ffffff0d;
+        color: #c97c5d;
+        font-weight: bold;
+        margin-top: 2rem;
+        width: 34%;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    
 
 }

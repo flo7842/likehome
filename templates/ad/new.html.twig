@@ -6,14 +6,45 @@
 
 {% block body %}
 
-    <div class="container">
-        <h1>Créer une nouvelle annonce</h1>
+    <h1>Créer une nouvelle annonce</h1>
+    <div class="container container-child">
 
         {{ form_start(form) }}
-
-        {{ form_widget(form) }}
-
-        <button type="submit" class="btn btn-primary">Créer la nouvelle annonce</button>
+            <div class="form-group">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.slug) }}
+                {{ form_widget(form.slug) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.coverImage) }}
+                {{ form_widget(form.coverImage) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.introduction) }}
+                {{ form_widget(form.introduction) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.content) }}
+                {{ form_widget(form.content) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.rooms) }}
+                {{ form_widget(form.rooms) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.price) }}
+                {{ form_widget(form.price) }}
+            </div>
+            <div class="form-group img-group">
+                {{ form_label(form.images) }}
+                <i class="far fa-image"></i>
+                {{ form_widget(form.images) }}
+            </div>
+        
+        <button type="submit" class="btn-ad">Créer la nouvelle annonce</button>
 
         {{ form_end(form) }}
     </div>
