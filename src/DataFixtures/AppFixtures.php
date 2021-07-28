@@ -26,6 +26,7 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr-FR');
 
+        // We manage the admin user
         $adminRole = new Role();
         $adminRole->setTitle('ROLE_ADMIN');
         $manager->persist($adminRole);
@@ -41,7 +42,7 @@ class AppFixtures extends Fixture
                   ->addUserRole($adminRole);
         $manager->persist($adminUser);
 
-        //Nous gérons les annonces
+        // We manage the users
         $users = [];
         $genres = ['male', 'female'];
 
@@ -69,7 +70,7 @@ class AppFixtures extends Fixture
             $users[] = $user;
         }
 
-        //Nous gérons les annonces
+        // We manage the ads
         for($i = 1; $i <= 30; $i++){
             $ad = new Ad();
 
@@ -99,13 +100,13 @@ class AppFixtures extends Fixture
                 $manager->persist($image);
             }
 
-            // Gestion des réservations
+            // We manage the reservations
             for($j = 1; $j <= mt_rand(0, 10); $j++){
                 $booking = new Booking();
 
                 $createdAt = $faker->dateTimeBetween('-6 months');
                 $startDate = $faker->dateTimeBetween('-3 months');
-                // Gestion de la date de fin
+                // End date management
                 $duration  = mt_rand(3, 10);
                 $endDate   = (clone $startDate)->modify("+$duration days");
 
@@ -123,7 +124,7 @@ class AppFixtures extends Fixture
 
                 $manager->persist($booking);
 
-                // Gestion des commentaires
+                // We manage the comments
                 if(mt_rand(0, 1)){
                     $comment = new Comment();
                     $comment->setContent($faker->paragraph())

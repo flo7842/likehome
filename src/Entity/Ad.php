@@ -111,7 +111,7 @@ class Ad
     }
 
     /**
-     * Permet de récupérer le commentaire d'un auteur par rapport à une annonce
+     * Allows you to retrieve an author's comment on an ad
      *
      * @param User $author
      * @return Comment|null
@@ -126,27 +126,27 @@ class Ad
     }
 
     /**
-     * Permet de retourner la moyenne globale des notes pour cette annonce
+     * Allows you to return the overall average score for this ad
      *
      * @return float|int
      *
      */
     public function getAvgRatings(){
-        // Calculez la somme des notations
+        // Calculate the sum of the ratings
         $sum = array_reduce($this->comments->toArray(), function($total, $comment){
             return $total + $comment->getRating();
         }, 0);
 
-        // Faire la division pour avoir la moyenne
+        // Divide to get the average
         if(count($this->comments) > 0) return $sum / count($this->comments);
 
         return 0;
     }
 
     /**
-     * Permet d'obtenir un tableau des jours qui ne sont pas disponibles pour cette annonce
+     * Allows you to obtain a table of days that are not available for this ad
      *
-     * @return array Un tableau d'objet DateTime représentant les jours d'occupation
+     * @return array A DateTime object array representing busy days
      */
     public function getNotAvailableDays(){
         $notAvailableDays = [];
@@ -158,7 +158,7 @@ class Ad
                 24 * 60 * 60
             );
 
-            $days = array_map(function ($dayTimestamp){  // Transforme le tableau $resultat en un tableau avec des vrais dates
+            $days = array_map(function ($dayTimestamp){  // Transform the result array into an array with real dates
                 return new \DateTime(date('Y-m-d', $dayTimestamp));
             }, $resultat);
 

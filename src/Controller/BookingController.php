@@ -34,14 +34,14 @@ class BookingController extends AbstractController
             $booking->setBooker($user)
                     ->setAd($ad);
 
-            // Si les dates ne sont pas disponibles, message d'erreur
+            // If the dates are not available, error message is display
             if(!$booking->isBookableDates()){
                 $this->addFlash(
                     'warning',
                     "Les dates que vous avez choisi ne peuvent être réservées: elles sont déjà prises."
                 );
             }else{
-                // Sinon enregistrement et redirection
+               
                 $manager->persist($booking);
                 $manager->flush();
 
@@ -58,7 +58,7 @@ class BookingController extends AbstractController
     }
 
     /**
-     * Permet d'afficher la page d'une réservation
+     * Allows you to display the page of a reservation
      *
      * @Route("/booking/{id}", name="booking_show")
      *

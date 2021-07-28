@@ -14,59 +14,55 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class Pagination {
     /**
-     * Le nom de l'entité sur laquelle on veut effectuer une pagination
+     * The name of the entity on which we want to perform a pagination
      *
      * @var string
      */
     private $entityClass;
 
     /**
-     * Le nombre d'enregistrement à récupérer
+     * The number of records to retrieve
      *
      * @var integer
      */
     private $limit = 10;
 
     /**
-     * La page sur laquelle on se trouve actuellement
+     * The page we are currently on
      *
      * @var integer
      */
     private $currentPage = 1;
 
     /**
-     * Le manager de Doctrine qui nous permet notamment de trouver le repository dont on a besoin
+     * The Doctrine manager who allows us in particular to find the repository we need
      *
      * @var EntityManagerInterface
      */
     private $manager;
 
     /**
-     * Le moteur de template Twig qui va permettre de générer le rendu de la pagination
+     * The Twig template engine which will generate the rendering of the pagination
      *
      * @var Twig\Environment
      */
     private $twig;
 
     /**
-     * Le nom de la route que l'on veut utiliser pour les boutons de la navigation
+     * The name of the road that you want to use for the navigation buttons
      *
      * @var string
      */
     private $route;
 
     /**
-     * Le chemin vers le template qui contient la pagination
+     * The path to the template that contains the pagination
      *
      * @var string
      */
     private $templatePath;
 
     /**
-     * Constructeur du service de pagination qui sera appelé par Symfony
-     *
-     * N'oubliez pas de configurer votre fichier services.yaml afin que Symfony sache quelle valeur
-     * utiliser pour le $templatePath
      *
      * @param EntityManagerInterface $manager
      * @param Environment $twig
@@ -74,24 +70,17 @@ class Pagination {
      * @param string $templatePath
      */
     public function __construct(EntityManagerInterface $manager, Environment $twig, RequestStack $request, string $templatePath) {
-        // On récupère le nom de la route à utiliser à partir des attributs de la requête actuelle
+        // We retrieve the name of the route to use from the attributes of the current request
         $this->route        = $request->getCurrentRequest()->attributes->get('_route');
-        // Autres initialisations
+    
         $this->manager      = $manager;
         $this->twig         = $twig;
         $this->templatePath = $templatePath;
     }
 
     /**
-     * Permet d'afficher le rendu de la navigation au sein d'un template twig !
+     * Allows you to display the navigation rendering within a template Twig
      *
-     * On se sert ici de notre moteur de rendu afin de compiler le template qui se trouve au chemin
-     * de notre propriété $templatePath, en lui passant les variables :
-     * - page  => La page actuelle sur laquelle on se trouve
-     * - pages => le nombre total de pages qui existent
-     * - route => le nom de la route à utiliser pour les liens de navigation
-     *
-     * Attention : cette fonction ne retourne rien, elle affiche directement le rendu
      *
      * @return void
      */
@@ -104,11 +93,7 @@ class Pagination {
     }
 
     /**
-     * Permet de récupérer le nombre de pages qui existent sur une entité particulière
-     *
-     * Elle se sert de Doctrine pour récupérer le repository qui correspond à l'entité que l'on souhaite
-     * paginer (voir la propriété $entityClass) puis elle trouve le nombre total d'enregistrements grâce
-     * à la fonction findAll() du repository
+     * Allows you to retrieve the number of pages that exist on a particular entity
      *
      * @throws Exception si la propriété $entityClass n'est pas configurée
      *
@@ -116,28 +101,25 @@ class Pagination {
      */
     public function getPages(): int {
         if(empty($this->entityClass)) {
-            // Si il n'y a pas d'entité configurée, on ne peut pas charger le repository, la fonction
-            // ne peut donc pas continuer !
+            // If there is no entity configured, we cannot load the repository, the function
+            // therefore cannot continue
             throw new \Exception("Vous n'avez pas spécifié l'entité sur laquelle nous devons paginer ! Utilisez la méthode setEntityClass() de votre objet PaginationService !");
         }
 
-        // 1) Connaitre le total des enregistrements de la table
+        
         $total = count($this->manager
             ->getRepository($this->entityClass)
             ->findAll());
 
-        // 2) Faire la division, l'arrondi et le renvoyer
+   
         return ceil($total / $this->limit);
     }
 
     /**
-     * Permet de récupérer les données paginées pour une entité spécifique
+     * Allows you to retrieve paginated data for a specific entity
      *
-     * Elle se sert de Doctrine afin de récupérer le repository pour l'entité spécifiée
-     * puis grâce au repository et à sa fonction findBy() on récupère les données dans une
-     * certaine limite et en partant d'un offset
      *
-     * @throws Exception si la propriété $entityClass n'est pas définie
+     * @throws Exception if the $ entityClass property is not set
      *
      * @return array
      */
@@ -145,18 +127,19 @@ class Pagination {
         if(empty($this->entityClass)) {
             throw new \Exception("Vous n'avez pas spécifié l'entité sur laquelle nous devons paginer ! Utilisez la méthode setEntityClass() de votre objet PaginationService !");
         }
-        // 1) Calculer l'offset
+        // 1) Calcul offset
         $offset = $this->currentPage * $this->limit - $this->limit;
 
-        // 2) Demander au repository de trouver les éléments à partir d'un offset et
-        // dans la limite d'éléments imposée (voir propriété $limit)
+        // 2) Ask the repository to find the elements from an offset and
+        //    within the limit of elements imposed (see property $ limit)
         return $this->manager
             ->getRepository($this->entityClass)
             ->findBy([], [], $this->limit, $offset);
     }
 
     /**
-     * Permet de spécifier la page que l'on souhaite afficher
+     * 
+     *  Allows you to specify the page you want to display
      *
      * @param int $page
      * @return self
@@ -168,7 +151,7 @@ class Pagination {
     }
 
     /**
-     * Permet de récupérer la page qui est actuellement affichée
+     * Allows you to retrieve the page that is currently displayed
      *
      * @return int
      */
@@ -177,7 +160,7 @@ class Pagination {
     }
 
     /**
-     * Permet de spécifier le nombre d'enregistrements que l'on souhaite obtenir !
+     * Allows you to specify the number of records you want to obtain!
      *
      * @param int $limit
      * @return self
@@ -189,7 +172,7 @@ class Pagination {
     }
 
     /**
-     * Permet de récupérer le nombre d'enregistrements qui seront renvoyés
+     * Allows you to retrieve the number of records that will be returned
      *
      * @return int
      */
@@ -198,10 +181,7 @@ class Pagination {
     }
 
     /**
-     * Permet de spécifier l'entité sur laquelle on souhaite paginer
-     * Par exemple :
-     * - App\Entity\Ad::class
-     * - App\Entity\Comment::class
+     * Allows you to specify the entity on which you want to paginate
      *
      * @param string $entityClass
      * @return self
@@ -213,7 +193,7 @@ class Pagination {
     }
 
     /**
-     * Permet de récupérer l'entité sur laquelle on est en train de paginer
+     * Allows to retrieve the entity on which we are paging
      *
      * @return string
      */
@@ -222,7 +202,7 @@ class Pagination {
     }
 
     /**
-     * Permet de choisir un template de pagination
+     * Allows you to choose a pagination template
      *
      * @param string $templatePath
      * @return self
@@ -234,7 +214,7 @@ class Pagination {
     }
 
     /**
-     * Permet de récupérer le templatePath actuellement utilisé
+     * Allows you to retrieve the currently used templatePath
      *
      * @return string
      */
@@ -243,9 +223,9 @@ class Pagination {
     }
 
     /**
-     * Permet de changer la route par défaut pour les liens de la navigation
+     * Allows you to change the default route for navigation links
      *
-     * @param string $route Le nom de la route à utiliser
+     * @param string $route
      * @return self
      */
     public function setRoute(string $route): self {
@@ -255,7 +235,7 @@ class Pagination {
     }
 
     /**
-     * Permet de récupérer le nom de la route qui sera utilisé sur les liens de la navigation
+     * Allows you to retrieve the name of the route which will be used on the navigation links
      *
      * @return string
      */

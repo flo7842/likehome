@@ -37,7 +37,7 @@ class AdminCommentController extends AbstractController
 
 
     /**
-     * Permet d'afficher le formulaire de modification des commentaires
+     * Allows you to display the comments modification form
      *
      * @Route("/admin/comments/{id}/edit", name="admin_comment_edit")
      *
@@ -71,7 +71,7 @@ class AdminCommentController extends AbstractController
 
 
     /**
-     * Permet de supprimer un commentaire
+     * Allows you to delete a comment
      *
      * @Route("/admin/comment/{id}/delete", name="admin_comment_delete")
      *

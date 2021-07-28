@@ -20,7 +20,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AccountController extends AbstractController
 {
     /**
-     * Permet d'afficher et de gérer le formulaire de connexion
+     * Allows you to view and manage the login form
      *
      * @Route("/login", name="account_login")
      *
@@ -38,7 +38,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet de se déconneter
+     * Allows you to disconnect
      *
      * @Route("/logout", name="account_logout")
      *
@@ -48,7 +48,7 @@ class AccountController extends AbstractController
 
 
     /**
-     * Permet d'afficher le formulaire d'inscription
+     * Display the registration form
      *
      * @Route("/register", name="account_register")
      *
@@ -82,7 +82,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet d'afficher et de traiter le formulaire de modification de profil
+     * Used to display and process the profile modification form
      *
      * @Route("/account/profile", name="account_profile")
      * @IsGranted("ROLE_USER")
@@ -112,7 +112,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet de modifier le mot de passe
+     * Allows you to change the password
      *
      * @Route("/account/password-update", name="account_password")
      * @IsGranted("ROLE_USER")
@@ -158,7 +158,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet d'afficher le profil de l'utilisateur connecté
+     * Allows you to display the profile of the logged in user
      *
      * @Route("/account", name="account_index")
      * @IsGranted("ROLE_USER")
@@ -174,7 +174,8 @@ class AccountController extends AbstractController
 
 
     /**
-     * Permet d'afficher la liste des réservations faites par l'utilisateur
+     * 
+     * Allows you to display the list of reservations made by the user
      *
      * @Route("account/bookings", name="account_bookings")
      *

@@ -30,7 +30,7 @@ class AdminAdController extends AbstractController
 
 
     /**
-     * Permet d'afficher le formualire d'édition
+     * Used to display the edit form
      *
      * @Route("/admin/ads/{id}/edit", name="admin_ads_edit")
      *
@@ -59,7 +59,7 @@ class AdminAdController extends AbstractController
     }
 
     /**
-     * Permet de supprimer une annonce
+     * Allows you to delete an ad
      *
      * @Route("/admin/ads/{id}/delete", name="admin_ads_delete")
      *

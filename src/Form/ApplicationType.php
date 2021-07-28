@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 class ApplicationType extends AbstractType {
 
     /**
-     * Permet d'avoir la configuration de base d'un champ !
+     * Allows you to have the basic configuration of a control!
      *
      * @param string $label
      * @param string $placeholder

@@ -233,13 +233,19 @@ hr{
 }
 
 .card-home .card-body>div{
-    margin: 1rem 0;
-    color: aquamarine;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    color: #c97c5d;
 }
 
 .card-home .card-body h4{
+    color: #ffffff;
     margin-top: 1rem;
-    color: #D4DCFF;
+    text-decoration: underline;
+}
+
+.card-home .card-body h4 a{
+    color: #ffffff;
 }
 
 .become-host{
@@ -250,14 +256,17 @@ hr{
     background: #43AC6A;
     text-align: center;
 }
+
 .alert-success h4{
     padding-top: 0.8rem;
     color: white;
 }
+
 .alert-success p{
     padding-bottom: 0.8rem;
     color: white;
 }
+
 .title-auth{
     margin-top: 6rem;
 }
@@ -348,12 +357,20 @@ hr{
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+
 .button-group{
     align-items: center;
 }
+
 .btn-book{
-    display: block;
+    display: inline-block;
+    background: #c97c5d;
+    font-size: 0.8rem;
+    margin-right: 1.5rem;
+    border-radius: 2px;
+    padding: 0.2rem 0.3rem;
     color: white;
+    font-weight: 700;
     text-decoration: none;
 }
 
@@ -367,7 +384,6 @@ hr{
     padding: 0.4rem 0;
     margin-top: 2rem;
 }
-
 
 .navbar-container{
     display: flex;
@@ -383,6 +399,7 @@ hr{
     padding-bottom: 2rem;
     z-index: -1;
 }
+
 h2{
     color: #434e5a;
     text-align: center;
@@ -392,6 +409,7 @@ h2{
     margin-bottom: 50px;
     display: block;
 }
+
 .title-section::before{
     position: absolute;
     top: 50%;
@@ -411,10 +429,12 @@ h2{
     display: inline-block;
     color: #434e5a;
 }
+
 .header-home{
     width: 90%;
     margin: auto;
 }
+
 .header-home h1{
     font-size: 1.5rem;
     margin-bottom: 3rem;
@@ -422,6 +442,7 @@ h2{
     text-align: center;
     color: #535a62;
 }
+
 .header-home img{
     width: 100%;
 }
@@ -442,6 +463,8 @@ h2{
     margin: 1rem 0;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    border-right: 2px solid #ffffff4d;
+    border-radius: 5px;
 }
 .card:hover{
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -449,18 +472,26 @@ h2{
 .card-content{
     display: flex;
 }
-.card .card-content img{
+
+.card-content>div{
     width: 50%;
+}
+
+.card .card-content img{
     display: inline-block;
     border-radius: 10px;
-    height: 150px;
+    height: 170px;
 }
 .card-body{
     margin-left: 1rem;
     width: 45%;
     display: inline-block;
-
 }
+
+.home-card-body{
+    text-align: center;
+}
+
 .card-text{
     color: white;
 }
@@ -498,23 +529,28 @@ h2{
     color: white;
     font-size: 1.2rem;
 }
+
 .col{
     color: #c97c5d;
     width: 100%;
     margin: auto;
 }
+
 .col-rating small{
     color: lightgray;
 }
+
 .cont-comment{
     margin-top: 1rem;
     margin-bottom: 0.8rem;
 }
+
 .cont-comment blockquote{
     color: lightgray;
     font-size: 0.8rem;
     margin-bottom: -0.4rem;
 }
+
 .cont-comment strong{
     text-decoration: underline;
     font-size: 1rem;
@@ -526,24 +562,29 @@ h2{
     color: #ffffff;
     text-decoration: none;
 }
+
 .container-2{
     display: none;
 }
+
 .rating-row{
     color: aqua;
     padding-top: 2rem;
     padding-bottom: 1rem;
     text-align: center;
 }
+
 .rating{
     margin-left: 0.2rem;
     margin-right: 1rem;
 }
+
 .rating .fa-star{
     margin-top: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     color: #f6be23;
 }
+
 .book-username{
     margin-top: 2rem;
     font-size: 0.7rem;
@@ -919,6 +960,15 @@ table tr td{
     margin-bottom: 0.3rem;
 }
 
+.rating-row-ads div{
+    color: white;
+    margin-top: 1rem;
+}
+
+.rating-row-ads>p{
+    font-size: 0.8rem;
+}
+
 .body-ad h5{
     color: aquamarine;
 }
@@ -948,12 +998,14 @@ table tr td{
 }
 
 .show-more{
-    padding-top: 0.5rem;
-    width: 90%;
-    margin: auto;
-    text-align: center;
-    color: #c97c5d!important;
-    display: block;
+    display: inline-block;
+    background: #c97c5d;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    border-radius: 2px;
+    padding: 0.3rem 2rem;
+    color: white;
+    font-weight: 700;
     text-decoration: none;
 }
 
@@ -1065,7 +1117,7 @@ table tr td{
         background-position: center;
         background-size: cover;
         height: 250px;
-        width: 95%;
+        width: 96%;
         border-radius: 10px;
         margin: auto;
     }

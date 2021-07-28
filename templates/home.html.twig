@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}
@@ -20,15 +21,19 @@
         <div class="container-child">
             <div class="row-ads">
             {% for ad in bestAds %}
+            {% set url = path('ads_show', {'slug': ad.slug}) %}
                 <div class="card card-home-cont">
                     <div class="card-content card-home">
-                        <img src="{{ad.cover_image}}" alt="Image de l'appartement">
-                        <div class="card-body">
+                        <div>
+                            <img src="{{ad.cover_image}}" alt="Image de l'appartement" class="img-ad">
+                        </div>
+                        <div class="card-body home-card-body">
                             <h4 class="card-title">
-                                {{ad.title}}
+                                <a href="{{ url }}" >{{ ad.title|slice(0, 18) }}...</a>
                             </h4>
-                            <div>
-                                3 chambres, <strong>{{ ad.price | number_format(2, ',', ' ')}}&euro; / nuit</strong><br>
+                            <div class="rating-row-ads">
+                                <div>Note : {% include 'partials/rating.html.twig' with {'rating' : ad.rating } %}</div>
+                                <strong>{{ ad.price | number_format(2, ',', ' ') }}&euro; / nuit</strong>
                             </div>
                             <a href="ads/{{ad.slug}}" class="btn-book">En savoir plus</a>
                         </div>

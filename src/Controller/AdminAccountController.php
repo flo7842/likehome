@@ -19,7 +19,7 @@ class AdminAccountController extends AbstractController
     }
 
     /**
-     * Permet de se déconnecter
+     * Allows you to disconnect of administration interface
      *
      * @Route("/admin/logout", name="admin_account_logout")
      *

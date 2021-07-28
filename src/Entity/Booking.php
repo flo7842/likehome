@@ -63,7 +63,6 @@ class Booking
     private $comment;
 
     /**
-     * Callback appelé à chaque fois qu'on crée une réservation
      *
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
@@ -74,23 +73,21 @@ class Booking
         }
 
         if(empty($this->amount)){
-            // prix de l'annonce * nombre de jour
+            
             $this->amount = $this->ad->getPrice() * $this->getDuration();
         }
     }
 
     public function isBookableDates(){
-        // Les dates qui sont impossibles pour l'annonce
+        
         $notAvailableDays = $this->ad->getNotAvailableDays();
 
-        // Comparer les dates choisies avec les dates imposssibles
         $bookingDays = $this->getDays();
 
         $formatDay = function ($day){
             return $day->format('Y-m-d');
         };
 
-        // Tableau des chaînes de caractères de mes journées
         $days = array_map($formatDay, $bookingDays);
 
         $notAvailable = array_map($formatDay, $notAvailableDays);
@@ -103,9 +100,9 @@ class Booking
     }
 
     /**
-     * Permet de récupérer un tableau des journées qui correspondent à ma réservation
+     * Allows you to retrieve a table of days that correspond to my reservation
      *
-     * @return array Un tableau d'objet DateTime représentant les jours de la réservation
+     * @return array A DateTime object array representing the days of the reservation
      */
     public function getDays(){
         $resultat = range(

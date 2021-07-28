@@ -33,7 +33,7 @@ class AdController extends AbstractController
     }
 
     /**
-     * Permet de créer une annonce
+     * Allows you to create an ad
      *
      * @Route("/ads/new", name="ads_create")
      * @IsGranted("ROLE_USER")
@@ -55,7 +55,7 @@ class AdController extends AbstractController
                 $manager->persist($image);
             }
 
-            $ad->setAuthor($this->getUser()); // Permet de lié l'annonce créee à l'utilisateur qui la créee
+            $ad->setAuthor($this->getUser());
 
             $manager->persist($ad);
             $manager->flush();
@@ -77,7 +77,7 @@ class AdController extends AbstractController
     }
 
     /**
-     * Permet d'afficher le formulaire d'édition
+     * Display the edit form
      *
      * @Route("/ads/{slug}/edit", name="ads_edit")
      * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette
@@ -117,14 +117,13 @@ class AdController extends AbstractController
     }
 
     /**
-     * Permet d'afficher une seule annonce
+     * Allows you to display a single ad
      *
      * @Route("/ads/{slug}", name="ads_show")
      *
      * @return Response
      */
-
-    public function show(Ad $ad){ //ici on utilise le param converteur qui va chercher directement dans ad un slug correspondant
+    public function show(Ad $ad){ 
         return $this->render('ad/show.html.twig', [
             'ad' => $ad
         ]);
@@ -132,7 +131,7 @@ class AdController extends AbstractController
 
 
     /**
-     * Permet de supprimer une annonce
+     * Allows you to delete an ad
      *
      * @Route("/ads/{slug}/delete", name="ads_delete")
      * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message="Vous n'avez pas le droit d'accéfer à cette ressource")
