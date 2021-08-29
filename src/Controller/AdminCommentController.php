@@ -26,7 +26,7 @@ class AdminCommentController extends AbstractController
 
         $pp = $commentRepo->findAll();
         $content = '';
-        var_dump($pp['content']);
+    
         
 
         return $this->render('admin/comment/comment.html.twig', [

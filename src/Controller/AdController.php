@@ -81,7 +81,7 @@ class AdController extends AbstractController
      *
      * @Route("/ads/{slug}/edit", name="ads_edit")
      * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette
-      annonce ne vous appartient pas, vous ne pouvez pas la modifier")
+     * annonce ne vous appartient pas, vous ne pouvez pas la modifier")
      *
      * @return Response
      */

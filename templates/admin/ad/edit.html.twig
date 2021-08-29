@@ -7,7 +7,7 @@
 {% block body %}
 
     <div class="container">
-        <h2 class="title-section"><span>Modification de l'annonce {{ ad.title }}</span></h2>
+        <h2 class="title-section"><span>Modification de l'annonce {{ ad.title | escape }}</span></h2>
 
         {{ form_start(form) }}
 
@@ -47,8 +47,8 @@
                             {% for booking in ad.bookings %}
                             <tr>
                                 <td>{{ booking.id }}</td>
-                                <td>{{ booking.booker.fullName }}</td>
-                                <td>{{ booking.createdAt | date('d/m/Y H:i') }}</td>
+                                <td>{{ booking.booker.fullName | escape }}</td>
+                                <td>{{ booking.createdAt | escape | date('d/m/Y H:i') }}</td>
                                 <td>
                                     <a href="#" class="btn btn-primary">
                                         <i class="fas fa-pen"></i>
@@ -79,9 +79,9 @@
                             {% for comment in ad.comments %}
                                 <tr>
                                     <td>{{ comment.id }}</td>
-                                    <td>{{ comment.author.fullName }}</td>
+                                    <td>{{ comment.author.fullName | escape }}</td>
                                     <td>{{ comment.rating }}</td>
-                                    <td>{{ comment.content }}</td>
+                                    <td>{{ comment.content | escape }}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary">
                                             <i class="fas fa-pen"></i>

@@ -32,6 +32,7 @@ class AppFixtures extends Fixture
         $manager->persist($adminRole);
 
         $adminUser = new User();
+        dd($this->encoder->encodePassword($adminUser, 'password'));
         $adminUser->setFirstName('Florian')
                   ->setLastName('Bracq')
                   ->setEmail('florianbracq42@gmail.com')
@@ -46,7 +47,7 @@ class AppFixtures extends Fixture
         $users = [];
         $genres = ['male', 'female'];
 
-        for($i = 1; $i <= 10; $i++){
+        for($i = 1; $i <= 6; $i++){
             $user = new User();
 
             $genre = $faker->randomElement($genres);
@@ -71,7 +72,7 @@ class AppFixtures extends Fixture
         }
 
         // We manage the ads
-        for($i = 1; $i <= 30; $i++){
+        for($i = 1; $i <= 10; $i++){
             $ad = new Ad();
 
             $title = $faker->sentence();
@@ -101,7 +102,7 @@ class AppFixtures extends Fixture
             }
 
             // We manage the reservations
-            for($j = 1; $j <= mt_rand(0, 10); $j++){
+            for($j = 1; $j <= mt_rand(0, 7); $j++){
                 $booking = new Booking();
 
                 $createdAt = $faker->dateTimeBetween('-6 months');

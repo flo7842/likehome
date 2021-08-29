@@ -1,38 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page de {{ user.fullName }}{% endblock %}
+{% block title %}Page de
+	{{ user.fullName }}
+{% endblock %}
 
 
 {% block body %}
 
 
-<div class="container container-child profil-user">
-    <div class="row align-items-center">
-        <div class="col-info-user">
-            <img src="{{ user.picture }}" class="avatar mb-3" alt="Avatar de {{ user.fullName }}">
-            <br>
-            <span class="badge badge-primary">{{ user.ads | length }} annonces</span>
-        </div>
-        <div class="col-username">
-            <h1>{{ user.fullName }}</h1>
-        </div>
-    </div>
-    {{ user.description | raw }}
+	<div class="container container-child profil-user">
+		<div class="row align-items-center">
+			<div class="col-info-user">
+				<img src="{{ user.picture | escape }}" class="avatar mb-3" alt="Avatar de {{ user.fullName | escape }}">
+				<br>
+				<span class="badge badge-primary">{{ user.ads | length }}
+					annonces</span>
+			</div>
+			<div class="col-username">
+				<h1>{{ user.fullName | escape }}</h1>
+			</div>
+		</div>
+		{{ user.description | escape | raw }}
 
-    <hr>
+		<hr>
 
-    <h2 class="user-ad-title">Les annonces de {{ user.fullName }}</h2>
+		<h2 class="user-ad-title">Les annonces de
+			{{ user.fullName | escape }}</h2>
 
-    {% if user.ads | length > 0 %}
-        <div class="row row-user-ad">
-            {% for ad in user.ads %}
-                {% include 'ad/_ad.html.twig' %}
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="alert alert-warning">
-            <p><strong>{{ user.fullName }}</strong></p>
-        </div>
-    {% endif %}
-</div>
+		{% if user.ads | length > 0 %}
+			<div class="row row-user-ad">
+				{% for ad in user.ads %}
+					{% include 'ad/_ad.html.twig' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="alert alert-warning">
+				<p>
+					<strong>{{ user.fullName | escape }}</strong>
+				</p>
+			</div>
+		{% endif %}
+	</div>
 {% endblock %}

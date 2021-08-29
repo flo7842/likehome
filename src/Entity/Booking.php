@@ -34,16 +34,14 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Type("\DateTimeInterface")
-     * @Assert\GreaterThan("today", message="La date d'arrivée doit être
-     supérieur à la date d'aujourd'hui !", groups={"front"})
+     * @Assert\GreaterThan("today", message="La date d'arrivée doit être supérieur à la date d'aujourd'hui !", groups={"front"})
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Type("\DateTimeInterface")
-     * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ doit être plus
-     * éloignée que la date d'arrivée !")
+     * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ doit être plus éloignée que la date d'arrivée !")
      */
     private $endDate;
 
@@ -114,7 +112,7 @@ class Booking
         $days = array_map(function ($dayTimestamp){
             return new \DateTime(date('Y-m-d', $dayTimestamp));
         }, $resultat);
-
+        
         return $days;
     }
 

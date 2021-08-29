@@ -42,6 +42,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Email(message="Veuillez renseigner un email valide !")
+     * @Assert\NotBlank(message="Vous devez renseigner votre Email !")
      */
     private $email;
 

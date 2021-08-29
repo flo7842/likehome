@@ -21,10 +21,10 @@
         {% for ad in pagination.getData %}
         <tr>
             <td>{{ ad.id }}</td>
-            <td>{{ ad.title }}</td>
+            <td>{{ ad.title | escape }}</td>
             <td>
-                <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-micro mr-2">
-                {{ ad.author.fullName }}</td>
+                <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName | escape }}" class="avatar avatar-micro mr-2">
+                {{ ad.author.fullName | escape }}</td>
             <td class="text-center">
                 <span class="badge badge-primary rounded">{{ ad.bookings | length }}</span>
             </td>

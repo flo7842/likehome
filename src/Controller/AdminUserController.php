@@ -63,4 +63,27 @@ class AdminUserController extends AbstractController
             'user' => $user
         ]);
     }
+
+    /**
+     * Allows you to delete an ad
+     *
+     * @Route("/admin/user/{id}/delete", name="admin_user_delete")
+     *
+     * @param User $user
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function delete(User $user, EntityManagerInterface $manager){
+        
+            $manager->remove($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "L'utilisateur <strong>{$user->getUsername()}</strong> a bien été supprimée !"
+            );
+
+
+        return $this->redirectToRoute('admin_user_index');
+    }
 }

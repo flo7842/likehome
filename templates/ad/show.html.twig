@@ -8,11 +8,11 @@
 
     <div class="ad-title">
         <div class="info">
-            <h1>{{ ad.title }}</h1>
+            <h1>{{ ad.title | escape }}</h1>
         </div>
         <div class="container cont-ad">
             
-            <img src="{{ ad.coverImage }}" alt="image de l'appartement">
+            <img src="{{ ad.coverImage | escape }}" alt="image de l'appartement">
             <div class="container-child">
                 
                 <div class="rating-row">
@@ -20,8 +20,8 @@
                     <strong>{{ ad.price | number_format(2, ',', ' ') }}&euro;</strong> / nuit
                 </div>
                 <div class="ad-content">
-                    <p>{{ ad.content | raw }}</p>
-                    <a href="{{ path('booking_create', {'slug': ad.slug})}}" class="btn-book-ad">Réserver !</a>
+                    <p>{{ ad.content | escape | raw }}</p>
+                    <a href="{{ path('booking_create', {'slug': ad.slug | escape})}}" class="btn-book-ad">Réserver !</a>
                     <br/>
                     <br/>
                     <hr>
@@ -36,7 +36,7 @@
                                     <div class="col-rating">
                                         {% include 'partials/rating.html.twig' with {'rating' : ad.avgRatings } %}
                                         <br>
-                                        <small>(Calculée sur {{ ad.comments | length }} avis !)</small>
+                                        <small>(Calculée sur {{ ad.comments | escape | length }} avis !)</small>
                                     </div>
                                 </div>
                             </h4>
@@ -45,9 +45,9 @@
     
                         {% for comment in ad.comments %}
                             <div class="bg-light rounded mb-3 py-3 px-3 cont-comment">
-                                <strong>{{ comment.author.fullName }} a dit :</strong> 
+                                <strong>{{ comment.author.fullName | escape }} a dit :</strong> 
                                 <blockquote>
-                                    {{ comment.content }}
+                                    {{ comment.content | escape }}
                                 </blockquote>
                                 <strong class="rate">Note donnée: </strong>
     
@@ -59,18 +59,18 @@
                         <h2>Cette annonce n'a pas encore reçu de commentaires ...</h2>
                     {% endif %}
                     {% if app.user and app.user == ad.author %}
-                        <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn 
+                        <a href="{{ path('ads_edit', {'slug': ad.slug | escape}) }}" class="btn 
                         btn-secondary">Modifier l'annonce</a>
         
-                        <a href="{{ path('ads_delete', {'slug': ad.slug}) }}" class="btn
-                        btn-danger" onclick="return confirm(`Etes vous sur de vouloir supprimer l'annonce : {{ ad.title }} ?`)">Supprimer l'annonce</a>
+                        <a href="{{ path('ads_delete', {'slug': ad.slug | escape}) }}" class="btn
+                        btn-danger" onclick="return confirm(`Etes vous sur de vouloir supprimer l'annonce : {{ ad.title | escape }} ?`)">Supprimer l'annonce</a>
         
                     {% endif %}
                 </div>
                 <div class="container-2">
                     <div class="row">
                         <div class="col-md-8 mb-3">
-                            {{ ad.content | raw }}
+                            {{ ad.content | escape | raw }}
     
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
@@ -83,8 +83,8 @@
                                         <div class="carousel-item {% if loop.first %}active{% endif %}">
                                             <img src="{{ image.url }}" class="d-block w-100" alt="...">
                                             <div class="carousel-caption d-none d-md-block">
-                                                <h5>{{ ad.title }}</h5>
-                                                <p>{{ image.caption }}</p>
+                                                <h5>{{ ad.title | escape }}</h5>
+                                                <p>{{ image.caption | escape }}</p>
                                             </div>
                                         </div>
                                     {% endfor %}

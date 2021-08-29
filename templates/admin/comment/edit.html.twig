@@ -9,9 +9,9 @@
 
 
         <div class="alert alert-info">
-            <strong>Annonce liée : </strong> {{ comment.ad.title }}<br>
-            <strong>Auteur : </strong>{{ comment.author.fullName }}<br>
-            <strong>Date de création : </strong>{{ comment.createdAt | date('d/m/Y H:i') }}<br>
+            <strong>Annonce liée : </strong> {{ comment.ad.title | escape }}<br>
+            <strong>Auteur : </strong>{{ comment.author.fullName | escape }}<br>
+            <strong>Date de création : </strong>{{ comment.createdAt | escape | date('d/m/Y H:i') }}<br>
             <strong>Note donnée : </strong>{{ comment.rating }}
         </div>
         {{ form_start(form) }}

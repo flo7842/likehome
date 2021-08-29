@@ -40,6 +40,7 @@ class Ad
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Positive(message="Le montant ne peut pas être inférieur à zéro !")
      */
     private $price;
 
@@ -73,8 +74,8 @@ class Ad
     private $images;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ads")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="user")
+     * @ORM\JoinColumn(nullable=false, name="author_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $author;
 

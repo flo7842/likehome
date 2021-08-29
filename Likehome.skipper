@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<skipper version="3.2.34.1757" mvc="Symfony" orm="Doctrine2" name="Likehome" uuid="b114bf80-c762-42e8-b8c5-95b1ff766ffe">
+  <module name="\src/Entity" local-name="src/Entity" namespace="\App\Entity" local-namespace="\App\Entity" export-format="Doctrine2Php" export-path="src/Entity" uuid="8c63d30e-824e-41af-981f-3366710d31a6">
+    <entity name="\App\Entity\RoleUser::class" local-name="RoleUser::class" namespace="\App\Entity" uuid="36ca7e2b-4fef-4388-bf70-9ae9a75a3277">
+      <field name="Role_id" type="integer" uuid="7caea2ba-e1e9-456e-bd50-ea18c8d991c4"/>
+      <field name="User::class_id" type="integer" uuid="a5e2279d-8be9-43d1-93e7-a18b4c4e6425"/>
+    </entity>
+    <many-to-many mn-entity="\App\Entity\RoleUser::class" uuid="25245205-4dec-423a-bf77-2b57e0478d4d">
+      <many-to-many-entity name="\App\Entity\Role" owning-side="true" uuid="48e12317-a876-497e-9783-c6c0bb0e9598">
+        <many-to-many-field from="Role_id" to="id" uuid="fef5b9d8-5839-4db2-ba4f-d55274cc8b5f"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="\User::class" owning-side="false" alias="users" uuid="6834376f-26ec-4d14-be5a-b0b2eedef648">
+        <many-to-many-field from="User::class_id" to="id" uuid="062dea43-706c-41d0-8d0e-36e56ba14465"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="\App\Entity\Ad" local-name="Ad" namespace="\App\Entity" uuid="96e6daa1-2828-4ecd-8155-135894684c46">
+      <field name="id" type="integer" required="true" primary="true" uuid="ee863bf5-fa65-4757-a79c-b089f0243c25">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="title" type="string" size="255" required="true" uuid="2be00572-970c-447e-aa2c-bec379264de4"/>
+      <field name="slug" type="string" size="255" required="true" uuid="c5c07df9-7e4a-4019-9049-3c95ce2e576e"/>
+      <field name="price" type="float" required="true" uuid="7eb8f8ca-8acc-4371-a971-0119007ee258"/>
+      <field name="introduction" type="text" required="true" uuid="31bb8fe5-5256-4d7e-abb3-a1b661b43982"/>
+      <field name="content" type="text" required="true" uuid="348fa975-58a9-44e3-ab88-1b37c153a952"/>
+      <field name="coverImage" type="string" size="255" required="true" uuid="31541bbd-39e8-4105-8070-e194662c1c68"/>
+      <field name="rooms" type="integer" required="true" uuid="f370bdd4-ffae-4374-8a34-4781bb051a23"/>
+      <field name="author_id" required="true" uuid="4939f9a7-abaa-4932-a237-1b01862d36f2"/>
+      <orm-attributes>
+        <attribute name="repository-class">App\Repository\AdRepository</attribute>
+        <attribute name="export-file-name">Ad.php</attribute>
+        <attribute name="lifecycle-callbacks">
+          <attribute name="lifecycle-callback">
+            <attribute name="type">prePersist</attribute>
+            <attribute name="method">initializeSlug</attribute>
+          </attribute>
+          <attribute name="lifecycle-callback">
+            <attribute name="type">preUpdate</attribute>
+            <attribute name="method">initializeSlug</attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Entity\Ad" to="\App\Entity\User" owner-alias="ads" inverse-alias="author" many-owner="true" many-inverse="false" parent-required="true" uuid="a773d63e-217e-4125-9138-36ce2cd5dae8">
+      <association-field from="author_id" to="id" uuid="8a6ba394-b2dc-42d3-b476-5e1d761d338f"/>
+      <orm-attributes>
+        <attribute name="side-owning"/>
+        <attribute name="side-inverse"/>
+      </orm-attributes>
+    </association>
+    <entity name="\App\Entity\Booking" local-name="Booking" namespace="\App\Entity" uuid="c666e4a5-ec43-46f1-8c72-845f2d22a904">
+      <field name="id" type="integer" required="true" primary="true" uuid="14c87b3d-6b55-4ec1-8f3d-1223d341a185">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="startDate" type="datetime" required="true" uuid="01275e58-a126-4129-8cfb-62f634ba8681"/>
+      <field name="endDate" type="datetime" required="true" uuid="f6087f23-0d13-46e9-85fa-07008e855dd6"/>
+      <field name="createdAt" type="datetime" required="true" uuid="0e9dda5b-9e9b-4ea2-b44e-eff872d120b8"/>
+      <field name="amount" type="float" required="true" uuid="8824343f-56c5-4d0d-bad6-c17553cb6586"/>
+      <field name="comment" type="text" uuid="ef4ffcfc-da33-45aa-80ed-9dffef0557f0"/>
+      <field name="booker_id" required="true" uuid="e02dd8e5-8471-4de6-9a14-725924195141"/>
+      <field name="ad_id" required="true" uuid="70b03026-a3ba-4594-95ac-d51e5e638e07"/>
+      <orm-attributes>
+        <attribute name="repository-class">App\Repository\BookingRepository</attribute>
+        <attribute name="export-file-name">Booking.php</attribute>
+        <attribute name="lifecycle-callbacks">
+          <attribute name="lifecycle-callback">
+            <attribute name="type">prePersist</attribute>
+            <attribute name="method">prePersist</attribute>
+          </attribute>
+          <attribute name="lifecycle-callback">
+            <attribute name="type">preUpdate</attribute>
+            <attribute name="method">prePersist</attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Entity\Booking" to="\App\Entity\User" owner-alias="bookings" inverse-alias="booker" many-owner="true" many-inverse="false" parent-required="true" uuid="ab5d43c4-ea36-41ac-a922-3b8af8abc62d">
+      <association-field from="booker_id" to="id" uuid="ce6d3f9b-f36d-4462-8f54-5ab28c5bd1e2"/>
+      <orm-attributes>
+        <attribute name="side-owning"/>
+        <attribute name="side-inverse"/>
+      </orm-attributes>
+    </association>
+    <association from="\App\Entity\Booking" to="\App\Entity\Ad" owner-alias="bookings" inverse-alias="ad" many-owner="true" many-inverse="false" parent-required="true" uuid="275c2be5-4b64-4ca7-a08f-ee74c6186506">
+      <association-field from="ad_id" to="id" uuid="31fb8ee8-3fe5-4848-abbe-aa13c53b2e63"/>
+      <orm-attributes>
+        <attribute name="side-owning"/>
+        <attribute name="side-inverse"/>
+      </orm-attributes>
+    </association>
+    <entity name="\App\Entity\Comment" local-name="Comment" namespace="\App\Entity" uuid="1a1642cc-1e89-4410-864b-6d5640a80c4a">
+      <field name="id" type="integer" required="true" primary="true" uuid="4c7fa02b-e884-48f4-a666-28f27525512b">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="created_at" type="datetime" required="true" uuid="5db3279d-9201-479e-89d5-880b9b6e15d1"/>
+      <field name="rating" type="integer" required="true" uuid="d952e74b-4b3d-4fbc-9a3d-e281ae7ffa80"/>
+      <field name="content" type="text" required="true" uuid="91c8bcc1-10f0-446e-a848-b12fda7e0d9f"/>
+      <field name="ad_id" uuid="629ffa0e-4489-41b0-a917-efdedfae05bb"/>
+      <field name="author_id" uuid="c45d3fb4-3140-4901-abc8-7a78584784ca"/>
+      <orm-attributes>
+        <attribute name="repository-class">CommentRepository::class</attribute>
+        <attribute name="export-file-name">Comment.php</attribute>
+        <attribute name="lifecycle-callbacks">
+          <attribute name="lifecycle-callback">
+            <attribute name="type">prePersist</attribute>
+            <attribute name="method">prePersist</attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Entity\Comment" to="\Ad::class" owner-alias="" inverse-alias="ad" many-owner="true" many-inverse="false" uuid="8b050cff-b24a-48b5-bb72-5f3b8f0ab071">
+      <association-field from="ad_id" to="id" uuid="14a13a04-f4ca-477a-b160-c27f8893b5b7"/>
+      <orm-attributes>
+        <attribute name="side-owning"/>
+        <attribute name="side-inverse"/>
+      </orm-attributes>
+    </association>
+    <association from="\App\Entity\Comment" to="\User::class" owner-alias="" inverse-alias="author" many-owner="true" many-inverse="false" uuid="89b3699a-9fc5-4ca3-b9fe-2f0f8557437f">
+      <association-field from="author_id" to="id" uuid="d2daecf6-d810-463b-b735-301e13d0b967"/>
+      <orm-attributes>
+        <attribute name="side-owning"/>
+        <attribute name="side-inverse"/>
+      </orm-attributes>
+    </association>
+    <entity name="\App\Entity\Image" local-name="Image" namespace="\App\Entity" uuid="b2801c08-d832-4263-93ad-5ba6a74c373c">
+      <field name="id" type="integer" required="true" primary="true" uuid="8ac7d20b-e92d-4a17-87b0-10fc68896cc5">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="url" type="string" size="255" required="true" uuid="df25db67-b9ab-4446-80b5-9e040b347c3c"/>
+      <field name="caption" type="string" size="255" required="true" uuid="6a66ba6f-f28b-4a81-84ae-2427b36d1bdd"/>
+      <field name="ad_id" uuid="aa441590-b66e-456f-97f8-1dfbc218d399"/>
+      <orm-attributes>
+        <attribute name="repository-class">ImageRepository::class</attribute>
+        <attribute name="export-file-name">Image.php</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Entity\Image" to="\Ad::class" owner-alias="" inverse-alias="ad" many-owner="true" many-inverse="false" uuid="adfcb69a-50fc-48d7-abce-13b634fd9923">
+      <association-field from="ad_id" to="id" uuid="b79f9aec-2eeb-4e51-88d7-6a93da0f668d"/>
+      <orm-attributes>
+        <attribute name="side-owning"/>
+        <attribute name="side-inverse"/>
+      </orm-attributes>
+    </association>
+    <entity name="\App\Entity\Role" local-name="Role" namespace="\App\Entity" uuid="1ab0aabb-6d03-4b2a-8840-7d1a71081f54">
+      <field name="id" type="integer" required="true" primary="true" uuid="008683f4-4742-45fd-af44-ca992bb60c88">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="title" type="string" size="255" required="true" uuid="6e358946-74d9-4cd7-bb1b-b02296f0f9f7"/>
+      <orm-attributes>
+        <attribute name="repository-class">RoleRepository::class</attribute>
+        <attribute name="export-file-name">Role.php</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\App\Entity\User" local-name="User" namespace="\App\Entity" uuid="1fcf527c-e649-405a-9f79-7a36728567d0">
+      <field name="id" type="integer" required="true" primary="true" uuid="926a3516-a2d1-46dc-8d2b-026818a1697c">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="firstName" type="string" size="255" required="true" uuid="a8b9817e-cab4-46c3-9d18-dc396f0155d6"/>
+      <field name="lastName" type="string" size="255" required="true" uuid="74ab197a-e142-4ac9-9e44-0ac503c271f1"/>
+      <field name="email" type="string" size="255" required="true" uuid="4fd7bc20-ff14-470f-91ef-7280bec8d339"/>
+      <field name="picture" type="string" size="255" uuid="8db394d9-dd91-47da-9cdc-b4fab8292b46"/>
+      <field name="hash" type="string" size="255" required="true" uuid="bae367ea-cf1a-418b-b043-3c893f4c1503"/>
+      <field name="introduction" type="string" size="255" required="true" uuid="19de4d34-a8c9-4507-bb98-8b9d5369a73f"/>
+      <field name="description" type="text" required="true" uuid="7dfb5123-0ff9-4d26-924d-7922775fb60b"/>
+      <field name="slug" type="string" size="255" required="true" uuid="c8a41d43-2a67-46a8-9402-91ca046f9461"/>
+      <orm-attributes>
+        <attribute name="repository-class">App\Repository\UserRepository</attribute>
+        <attribute name="export-file-name">User.php</attribute>
+        <attribute name="lifecycle-callbacks">
+          <attribute name="lifecycle-callback">
+            <attribute name="type">prePersist</attribute>
+            <attribute name="method">initializeSlug</attribute>
+          </attribute>
+          <attribute name="lifecycle-callback">
+            <attribute name="type">preUpdate</attribute>
+            <attribute name="method">initializeSlug</attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+  </module>
+  <module name="\tmp" local-name="tmp" namespace="\" uuid="dab827b0-dd89-45bf-9f38-f60aa352f6b0">
+    <entity name="\Ad::class" local-name="Ad::class" namespace="\" uuid="33fa25f4-a5b0-4054-8a66-7754f10a7944">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="4e61915c-c5cd-4ddb-820c-cbfff44a7920"/>
+    </entity>
+    <entity name="\User::class" local-name="User::class" namespace="\" uuid="ca097583-cf50-4970-bef5-3352e56135ac">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="018100bd-836a-4cbc-91e4-8dc9c48e8126"/>
+    </entity>
+  </module>
+  <visual-data>
+    <association uuid="275c2be5-4b64-4ca7-a08f-ee74c6186506" center-position-x="0" center-position-y="0" color="#CDC32B"/>
+    <association uuid="89b3699a-9fc5-4ca3-b9fe-2f0f8557437f" color="#B31F24"/>
+    <association uuid="8b050cff-b24a-48b5-bb72-5f3b8f0ab071" color="#F4931F"/>
+    <association uuid="a773d63e-217e-4125-9138-36ce2cd5dae8" color="#0A783D"/>
+    <association uuid="ab5d43c4-ea36-41ac-a922-3b8af8abc62d" color="#61D351"/>
+    <association uuid="adfcb69a-50fc-48d7-abce-13b634fd9923" color="#C774AF"/>
+    <entity uuid="1a1642cc-1e89-4410-864b-6d5640a80c4a" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="415" position-y="108" size-x="0" size-x2="114" size-y="0" size-y2="101"/>
+    <entity uuid="1ab0aabb-6d03-4b2a-8840-7d1a71081f54" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="329" position-y="233" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
+    <entity uuid="1fcf527c-e649-405a-9f79-7a36728567d0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="128" position-y="313" size-x="0" size-x2="126" size-y="0" size-y2="143"/>
+    <entity uuid="33fa25f4-a5b0-4054-8a66-7754f10a7944" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="33" position-y="20" size-x="0" size-x2="69" size-y="0" size-y2="31"/>
+    <entity uuid="36ca7e2b-4fef-4388-bf70-9ae9a75a3277" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="526" position-y="456" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
+    <entity uuid="96e6daa1-2828-4ecd-8155-135894684c46" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="60" position-y="57" size-x="0" size-x2="128" size-y="0" size-y2="143"/>
+    <entity uuid="b2801c08-d832-4263-93ad-5ba6a74c373c" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="-22" position-y="323" size-x="0" size-x2="108" size-y="0" size-y2="73"/>
+    <entity uuid="c666e4a5-ec43-46f1-8c72-845f2d22a904" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="238" position-y="64" size-x="0" size-x2="110" size-y="0" size-y2="129"/>
+    <entity uuid="ca097583-cf50-4970-bef5-3352e56135ac" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="12" position-y="84" size-x="0" size-x2="69" size-y="0" size-y2="31"/>
+    <many-to-many-association uuid="25245205-4dec-423a-bf77-2b57e0478d4d" color="#8A54A2"/>
+    <module uuid="8c63d30e-824e-41af-981f-3366710d31a6" bg-color="#FEFCE8" position-x="50" position-y="50" size-x="35" size-x2="672" size-y="0" size-y2="601"/>
+    <module uuid="dab827b0-dd89-45bf-9f38-f60aa352f6b0" bg-color="#FEEFE3" position-x="654" position-y="50" size-x="0" size-x2="109" size-y="0" size-y2="162"/>
+    <project uuid="b114bf80-c762-42e8-b8c5-95b1ff766ffe" size-x="0" size-x2="813" size-y="0" size-y2="669"/>
+  </visual-data>
+</skipper>

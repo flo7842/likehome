@@ -11,9 +11,9 @@
 {% block body %}
 
     <div class="container">
-        <h1 class="book-username">Réservez l'annonce de <em>{{ ad.author.fullName }}</em></h1>
-        <h2 class="title-book">{{ ad.title }}</h2>
-        <p style="text-align: center; margin-top: 1rem;">Vous êtes sur le point de réserver le bien de <strong>{{ ad.author.fullName }}</strong>
+        <h1 class="book-username">Réservez l'annonce de <em>{{ ad.author.fullName | escape }}</em></h1>
+        <h2 class="title-book">{{ ad.title | escape }}</h2>
+        <p style="text-align: center; margin-top: 1rem;">Vous êtes sur le point de réserver le bien de <strong>{{ ad.author.fullName | escape }}</strong>
         , dites nous tout, on s'occupe du reste !</p>
         <div class="container-child cont-book">
             {{ form_start(form) }}
