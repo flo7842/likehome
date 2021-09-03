@@ -10,16 +10,16 @@ use App\Entity\Role;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker\Factory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    private $encoder;
+    private $passwordHasher;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->encoder = $encoder;
+        $this->passwordHasher = $passwordHasher;
     }
 
     public function load(ObjectManager $manager)
@@ -32,11 +32,11 @@ class AppFixtures extends Fixture
         $manager->persist($adminRole);
 
         $adminUser = new User();
-        dd($this->encoder->encodePassword($adminUser, 'password'));
+       // dd($this->encoder->encodePassword($adminUser, 'password'));
         $adminUser->setFirstName('Florian')
                   ->setLastName('Bracq')
                   ->setEmail('florianbracq42@gmail.com')
-                  ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+                  ->setHash($this->passwordHasher->hashPassword($adminUser, 'password'))
                   ->setPicture('https://pbs.twimg.com/profile_images/1102967485974937600/LgSE31RT_400x400.png')
                   ->setIntroduction($faker->sentence())
                   ->setDescription('<p>' .join('</p><p>', $faker->paragraphs(3)) . '</p>')
@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
         $users = [];
         $genres = ['male', 'female'];
 
-        for($i = 1; $i <= 6; $i++){
+        for($i = 1; $i <= 4; $i++){
             $user = new User();
 
             $genre = $faker->randomElement($genres);
@@ -57,14 +57,14 @@ class AppFixtures extends Fixture
 
             $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId;
 
-            $hash = $this->encoder->encodePassword($user, 'password');
+            //$hash = $this->encoder->encodePassword($user, 'password');
 
             $user->setFirstName($faker->firstName($genre))
                 ->setLastName($faker->lastName)
                 ->setEmail($faker->email)
                 ->setIntroduction($faker->sentence())
                 ->setDescription('<p>' .join('</p><p>', $faker->paragraphs(3)) . '</p>')
-                ->setHash($hash)
+                ->setHash($this->passwordHasher->hashPassword($user, 'password'))
                 ->setPicture($picture);
 
             $manager->persist($user);
@@ -91,7 +91,7 @@ class AppFixtures extends Fixture
                 ->setAuthor($user);
             ;
 
-            for($j = 1; $j <= mt_rand(2, 5); $j++){
+            for($j = 1; $j <= mt_rand(0, 2); $j++){
                 $image = new Image();
 
                 $image->setUrl($faker->imageUrl())
@@ -102,7 +102,7 @@ class AppFixtures extends Fixture
             }
 
             // We manage the reservations
-            for($j = 1; $j <= mt_rand(0, 7); $j++){
+            for($j = 1; $j <= mt_rand(0, 6); $j++){
                 $booking = new Booking();
 
                 $createdAt = $faker->dateTimeBetween('-6 months');

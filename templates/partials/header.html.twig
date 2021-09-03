@@ -42,12 +42,15 @@
 			</ul>
 		</div>
 	</nav>
+	<div class="logo-nav">
+		<img src="{{asset('image/logo.png')}}" alt="Logo LikeHome">
+	</div>
 </div>
 
 
-<div class="open-nav" onclick="openNav()">
+<div class="open-nav">
 	<a class="navbar-brand" href="{{ path('homepage') }}">LikeHome !</a>
-	<i class="fas fa-bars"></i>
+	<i class="fas fa-bars" onclick="openNav()"></i>
 </div>
 
 {% for label, messages in app.flashes %}

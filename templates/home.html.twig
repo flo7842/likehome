@@ -35,10 +35,10 @@
                                 <div>Note : {% include 'partials/rating.html.twig' with {'rating' : ad.rating } %}</div>
                                 <strong>{{ ad.price | number_format(2, ',', ' ') }}&euro; / nuit</strong>
                             </div>
-                            <a href="ads/{{ad.slug}}" class="btn-book">En savoir plus</a>
+                            <a href="ads/{{ad.slug}}" class="btn-book btn-book-home">En savoir plus</a>
                         </div>
                     </div>
-                </div> 
+                </div>
             {% endfor %}
             </div>
             <div class="become-host">

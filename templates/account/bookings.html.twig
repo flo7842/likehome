@@ -22,9 +22,9 @@
                             <strong class="rate">Note donnée : </strong>{% include 'partials/rating.html.twig'
                         with {'rating': comment.rating}%}
                         {% else %}
-                            Vous n'avez pas encore donné de note.
+                            <p>Vous n'avez pas encore donné de note.
                             <a href="{{ path('booking_show', {'id': booking.id}) }}#comment">
-                                Je donne mon avis !
+                                Je donne mon avis !</p>
                             </a>
                         {% endif %}
                     </div>

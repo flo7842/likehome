@@ -110,11 +110,12 @@ span.rating i {
 
 body{
     font-family: 'Open Sans', sans-serif;
-    
+    background: whitesmoke;
 }
 
 a{
     text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1{
@@ -135,6 +136,27 @@ hr{
     font-size: 0.8rem;
     width: 90%;
     padding: 9px 32px;
+}
+
+/** footer **/
+
+footer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2d303c;
+    padding-top: 2.5rem;
+    width: 100%;
+    padding-bottom: 2.5rem;
+}
+
+footer img{
+    width: 60px;
+}
+
+footer p{
+    color: #ffffff;
 }
 
 .avatar-mini{
@@ -158,7 +180,6 @@ hr{
     align-items: center;
     height: 100px;
     line-height: 100px;
-    background: aliceblue;
     text-align: end;
     font-size: 3em;
     font-family: 'Lato';
@@ -177,14 +198,17 @@ hr{
 }
 
 .overlay {
-  
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
     height: 100%;
     width: 0;
     position: fixed; 
     z-index: 100; 
     left: 0;
     top: 0;
-
     background-color: rgba(0,0,0,1); 
     overflow-x: hidden; 
     transition: 0.5s; 
@@ -192,11 +216,8 @@ hr{
 
 .overlay-content {
     position: relative;
-    left: 6rem;
-    top: 10%; 
-    width: 100%;
-    text-align: center; 
-
+    width: 34%;
+    text-align: center;
 }
 
 
@@ -224,8 +245,10 @@ hr{
     font-size: 40px;
 }
 
-.cont-log-1{
-    height: 100vh;
+
+.title-auth{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .login-cont{
@@ -233,19 +256,19 @@ hr{
 }
 
 .card-home .card-body>div{
-    text-align: center;
-    margin: 0 0 1rem 0;
+    text-align: left;
+    margin: 0 0rem 1rem 2rem;
     color: #c97c5d;
 }
 
 .card-home .card-body h4{
     color: #ffffff;
     margin-top: 1rem;
-    text-decoration: underline;
 }
 
 .card-home .card-body h4 a{
     color: #ffffff;
+    font-size: 1.4rem;
 }
 
 .become-host{
@@ -267,26 +290,24 @@ hr{
     color: white;
 }
 
-.title-auth{
-    margin-top: 6rem;
-}
-
 .form-auth{
     margin: auto;
     width: 70%;
 }
+
 
 .form-group{
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 90%;
+    width: 54%;
 }
 
 .form-group input{
     margin-top: 0.4rem;
     border: none;
+    border-bottom: 1px solid #694e4e47;
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
 }
@@ -302,7 +323,8 @@ hr{
 }
 
 .cont-register h1{
-    margin-top: 6rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .cont-register .container-child{
@@ -312,15 +334,16 @@ hr{
 
 
 .form-group label{
-    color: white;
+    color: #353030;
     margin-top: 1rem;
+    font-size: 1.2rem;
 }
 
 .form-group button{
     margin-top: 1rem;
-    background: #c97c5d30;
+    background: #6a666b;
     color: white;
-    width: 50%;
+    width: 100%;
     border: none;
     padding: 0.4rem 1rem 0.4rem 1rem;
 }
@@ -348,10 +371,18 @@ hr{
     padding: 1rem 0;
 }
 
+.btn-register{
+    width: 54%;
+    margin: auto;
+    background: #6a666b;
+}
+
 .btn-register button{
     display: block;
     margin: auto;
     outline: none;
+    border: none;
+    background: transparent;
     padding: 0.5rem 0;
     width: 90%;
     margin-top: 2rem;
@@ -366,12 +397,14 @@ hr{
     display: inline-block;
     background: #c97c5d;
     font-size: 0.8rem;
-    margin-right: 1.5rem;
     border-radius: 2px;
     padding: 0.2rem 0.3rem;
     color: white;
     font-weight: 700;
     text-decoration: none;
+}
+.btn-book-home{
+    margin-left: 2rem;
 }
 
 .btn-book-ad{
@@ -391,7 +424,6 @@ hr{
 }
 
 .container-child{
-    background: #434e5a;
     width: 100%;
     height: auto;
     margin-left: 0;
@@ -449,7 +481,11 @@ h2{
 
 .row-ads{
     margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
     padding-top: 3rem;
+    align-content: center;
+    justify-content: space-evenly;
 }
 
 .row-ads .title-section{
@@ -461,7 +497,8 @@ h2{
 }
 .card{
     margin: 1rem 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+    width: 45%;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     border-right: 2px solid #ffffff4d;
     border-radius: 5px;
@@ -471,6 +508,7 @@ h2{
 }
 .card-content{
     display: flex;
+    background: #2d303c;
 }
 
 .card-content>div{
@@ -489,7 +527,7 @@ h2{
 }
 
 .home-card-body{
-    text-align: center;
+    text-align: left;
 }
 
 .card-text{
@@ -568,7 +606,7 @@ h2{
 }
 
 .rating-row{
-    color: aqua;
+    color: white;
     padding-top: 2rem;
     padding-bottom: 1rem;
     text-align: center;
@@ -581,8 +619,12 @@ h2{
 
 .rating .fa-star{
     margin-top: 1rem;
-    font-size: 0.7rem;
+    font-size: 1.8rem;
     color: #f6be23;
+}
+
+.rating .fa-star i{
+    font-size: 1.8rem;
 }
 
 .book-username{
@@ -595,7 +637,7 @@ h2{
     color: #535A62;
 }
 .cont-book form{
-    width: 90%;
+    width: 45%;
     margin: auto;
 }
 .cont-book form h2{
@@ -604,7 +646,6 @@ h2{
     padding-top: 3rem;
     font-size: 1rem;
     text-align: left;
-    color: white;
 }
 .cont-book form span{
     color: rgb(83 90 98);
@@ -617,9 +658,6 @@ h2{
     display: flex;
     flex-direction: column;
     padding-top: 1rem;
-}
-.row-form .col > div label{
-    color: white;
 }
 .row-form .col > div input{
     margin-top: 0.6rem;
@@ -637,10 +675,6 @@ h2{
 
 .amount-days{
     padding: 1rem 0;
-}
-
-#days{
-    color: aquamarine;
 }
 
 #amount{
@@ -810,8 +844,7 @@ table{
 }
 
 .styled-table tr {
-    color: #ffffff;
-    border-bottom: 1px solid #c97c5d;
+    color: #222222;
     text-align: left;
 }
 
@@ -872,9 +905,6 @@ table tr td{
     color: white;
 }
 
-.col p{
-    color: white;
-}
 
 /** My Booking page **/
 
@@ -895,32 +925,35 @@ table tr td{
 .book-rating{
     text-align: center;
     margin-top: 1rem;
-    color: white;
+}
+
+.book-rating p{
+    margin-left: 1rem;
 }
 
 .book-rating a{
-    color: aquamarine;
+    color:#c97c5d;
+    border-bottom: 1px solid;
     font-size: 0.8rem;
     font-weight: 800;
 }
 
 .book-info{
-    width: 60%;
     margin: auto;
     margin-top: 1rem;
 }
 
-.book-info h4{
-    color: white;
-}
-
 .book-info p{
     margin: 1rem 0;
-    color: #C97C5D;
+    color: #535a62;
 }
 
-.book-info a{
-    color: aquamarine;
+.col-4{
+    display: flex;
+}
+
+.col-4 .img-fluid{
+    width: 200px;
 }
 
 .info{
@@ -1023,12 +1056,7 @@ table tr td{
     border-radius: 50%;
 }
 
-.col-username h1{
-    color: aquamarine;
-}
-
 .profil-user p{
-    color: white;
     width: 90%;
     margin: auto;
     margin-top: 2rem;
@@ -1056,16 +1084,29 @@ table tr td{
     margin: 0;
 }
 
-@media only screen and (min-width: 450px){
+
+
+@media only screen and (max-width: 450px){
 
     .container-child {
         top: 266px;
     }
+
+    .rating-row .rating .fa-star, .rating .fa-star{
+        margin-top: 1rem;
+        font-size: 0.7rem;
+        color: #f6be23;
+    }
 }
-@media only screen and (min-width: 650px){
+
+@media only screen and (max-width: 650px){
 
     .container-child {
         top: 622px;
+    }
+
+    .card{
+        width: 100%;
     }
 
     .row-ads{
@@ -1073,10 +1114,6 @@ table tr td{
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 2rem;
-    }
-
-    .card-home-cont{
-        width: 48%;
     }
 
     .col-md-4{
@@ -1089,7 +1126,15 @@ table tr td{
         flex-wrap: wrap;
     }
 
+    .rating-row .rating .fa-star{
+        margin-top: 1rem;
+        font-size: 0.7rem!important;
+        color: #f6be23;
+    }
 
+    .rating .fa-star{
+        font-size: 0.7rem;
+    }
 
     /** Admin **/
 
@@ -1150,7 +1195,34 @@ table tr td{
         text-align: center;
         font-size: 1.2rem;
     }
-
     
 
+}
+
+@media only screen and (max-width: 1200px){
+    .card{
+        width: 100%;
+    }
+
+    .overlay{
+        display: flex;
+        align-content: center;
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        background-color: rgba(0,0,0,1);
+        overflow-x: hidden;
+        transition: 0.5s;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rating .fa-star {
+        margin-top: 1rem;
+        font-size: 0.7rem;
+        color: #f6be23;
+    }
 }
